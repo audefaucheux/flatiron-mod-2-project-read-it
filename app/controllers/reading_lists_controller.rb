@@ -1,0 +1,2 @@
+class ReadingListsController < ApplicationController
+end
