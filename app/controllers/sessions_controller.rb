@@ -4,10 +4,11 @@ class SessionsController < ApplicationController
     end
     
     def create
-        if params[:email_address].nil? || params[:email_address].empty?
+        @user = User.find_by(email_address: params[:email_address])
+
+        if !params[:email_address].present? || !params[:password].present? || !@user.authenticate(params[:password])
             redirect_to login_path
         else
-            @user = User.find_by(email_address: params[:email_address])
             return head(:forbidden) unless @user.authenticate(params[:password])
             session[:user_id] = @user.id
             redirect_to root_path
