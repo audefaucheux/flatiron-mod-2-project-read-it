@@ -6,12 +6,15 @@
 <p><%= @book.synopsis %></p>
 
 <h3>Reviews:</h3>
-<p>New Review:</p>
+<p><%= link_to "Add Review", new_review_path(book_id: @book.id) %></p>
 
 <br>
 
 <% @book.reviews.each do |review| %>
     <%= review.user_email_address %> - <%= review.rating %>/5<br>
-    "<%= review.content %>"
+    "<%= review.content %>"<br>
+    <% if review.user_id == @current_user.id %>
+        <%= link_to "delete", review_path(id: review.id, book_id: @book.id), method:'delete' %>  
+    <% end %>
     <br><br>
 <% end %>

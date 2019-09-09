@@ -1,0 +1,12 @@
+<h1>Rate <%= @book.title %></h1>
+
+<%= form_for(@review) do |f| %>
+    <%= f.hidden_field :user_id, :value => @current_user.id %>
+    <%= f.hidden_field :book_id, :value => @book.id %>
+    <%= f.label :rating %>
+    <%= f.select :rating, options_for_select([5,4,3,2,1]) %><br><br>
+    <%= f.label :content %>
+    <%= f.text_area :content %><br><br>
+    <%= f.submit %>
+<% end %>
+  

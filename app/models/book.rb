@@ -11,4 +11,23 @@ class Book < ApplicationRecord
     self.genre.name
   end
 
+  def average_rating
+    total_rating = self.reviews.map{|review| review.rating}
+    total_rating.inject{|sum, el| sum + el}.to_f/total_rating.size
+  end
+
+  def star_rating
+    if average_rating >= 5
+      "*****"
+    elsif average_rating >= 4
+      "****"
+    elsif average_rating 
+      "***"
+    elsif average_rating 
+      "**"
+    elsif average_rating 
+      "*"
+    end
+  end
+
 end

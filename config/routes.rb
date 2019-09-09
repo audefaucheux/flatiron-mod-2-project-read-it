@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :books, only: [:index, :show]
   resources :authors, only: [:index, :show]
-  resources :reviews, only: [:new, :create]
+  resources :reviews, only: [:new, :create, :destroy]
 
   get '/reading_list', to: 'users#reading_list'
   post '/add_to_reading_list/:id', to: 'books#add_to_reading_list'
