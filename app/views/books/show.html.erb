@@ -6,8 +6,12 @@
 <p><%= @book.synopsis %></p>
 
 <h3>Reviews:</h3>
+<p>New Review:</p>
+
+<br>
+
 <% @book.reviews.each do |review| %>
     <%= review.user_email_address %> - <%= review.rating %>/5<br>
-    <%= review.content %>
+    "<%= review.content %>"
     <br><br>
 <% end %>

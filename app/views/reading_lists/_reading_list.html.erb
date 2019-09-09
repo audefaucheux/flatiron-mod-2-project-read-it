@@ -1,7 +1,14 @@
 <h1>My Reading List:</h1>
+<p>Total books: <%= @current_user.total_books %></p>
 
-<ul>
+<table>
+    <tr>
+        <th>Book Title</th>
+    </tr>
     <% @current_user.books.each do |book| %>
-        <li><%= book.title %></li>
+        <tr>
+            <td><%= link_to book.title, book %></td>
+        </tr>
     <% end %>
-</ul>
+    </tr>
+</table>

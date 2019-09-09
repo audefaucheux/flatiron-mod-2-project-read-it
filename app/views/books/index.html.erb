@@ -2,8 +2,20 @@
 
 <h3>Find a book:</h3>
 
-<ul>
+<table>
+    <tr>
+        <th>Book Title</th>
+        <th>Action</th>
+    </tr>
     <% @books.each do |book| %>
-      <li><%= link_to book.title, book %></li>
+      <tr>
+          <td><%= link_to book.title, book %></td>
+          <% if @current_user.books.include?(book) %>
+            <td><%= link_to "Remove from reading list", "/remove_from_reading_list/#{book.id}",{method: "delete"} %></td>
+          <% else %>
+            <td><%= link_to "Add to reading list", "/add_to_reading_list/#{book.id}",{method: "post"} %></td>
+          <% end %>
+      </tr>
     <% end %>
-</ul>
+    </tr>
+</table>

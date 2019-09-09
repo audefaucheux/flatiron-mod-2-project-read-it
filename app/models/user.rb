@@ -8,4 +8,7 @@ class User < ApplicationRecord
     validates :email_address, presence: true
     validates :email_address, uniqueness: true
 
+    def total_books
+        self.books.count
+    end
 end
