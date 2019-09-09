@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :authors, only: [:index, :show]
   resources :reviews, only: [:new, :create]
 
-  get '/reading_lists/:id', to: 'reading_lists#show', as: 'reading_list'
+  get '/reading_list', to: 'users#reading_list'
   post '/add_to_reading_list/:id', to: 'books#add_to_reading_list'
   delete '/remove_from_reading_list/:id', to: 'books#remove_from_reading_list'
 

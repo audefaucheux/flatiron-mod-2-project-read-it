@@ -16,6 +16,10 @@ class UsersController < ApplicationController
         end
     end
 
+    def reading_list
+        redirect_to root_path
+    end
+
     private
 
     def user_params

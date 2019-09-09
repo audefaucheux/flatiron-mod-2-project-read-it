@@ -15,7 +15,7 @@
   <%= link_to "Library", books_path %>
 
   <% if !@current_user.nil? %>
-    <%= link_to "My Reading List", reading_list_path(@current_user.reading_list) %>
+    <%= link_to "My Reading List", reading_list_path %>
     Settings
     <%= link_to "Log out", logout_path, {method: 'post'} %>
     <%= @current_user.email_address %>
