@@ -1,0 +1,13 @@
+<h1><%= @book.title %></h1>
+<h3>Author: <%= link_to @book.author_name, author_path(@book.author) %></h3>
+<h3>Genre: <%= @book.genre_name %></h3>
+
+<h3>Synopsis: </h3>
+<p><%= @book.synopsis %></p>
+
+<h3>Reviews:</h3>
+<% @book.reviews.each do |review| %>
+    <%= review.user_email_address %> - <%= review.rating %>/5<br>
+    <%= review.content %>
+    <br><br>
+<% end %>

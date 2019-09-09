@@ -10,6 +10,24 @@
   </head>
 
   <body>
+
+  <%= link_to "Library", books_path %>
+  <%= link_to "My Reading List", reading_list_path(@current_user.reading_list) %>
+  Settings
+  <% if !@current_user.nil? %>
+    <%= link_to "Log out", logout_path, {method: 'post'} %>
+    <%= @current_user.email_address %>
+  <% end %>
+
+  <% if flash[:errors] %>
+    <h2>OOPS something went wrong with the below:</h2>
+    <ul>
+      <% flash[:errors].each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
     <%= yield %>
   </body>
 </html>

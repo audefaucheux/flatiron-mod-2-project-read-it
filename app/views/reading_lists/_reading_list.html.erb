@@ -1,0 +1,7 @@
+<h1>My Reading List:</h1>
+
+<ul>
+    <% @current_user.books.each do |book| %>
+        <li><%= book.title %></li>
+    <% end %>
+</ul>

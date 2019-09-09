@@ -1,0 +1,14 @@
+<h1><%= @author.name %></h1>
+
+<h3>Genre(s):
+    <% @author.unique_genre_name.each do |genre_name| %>
+        <%= genre_name %>
+    <% end %>
+</h3>
+
+<h3>Books:</h3>
+<ul>
+    <% @author.books.each do |book| %>
+        <li><%= link_to book.title, book %></li>
+    <% end %>
+</ul>
