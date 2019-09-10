@@ -1,11 +1,12 @@
-<h1>Login</h1>
-<%= form_tag(sessions_path) do %>
-    <%= label_tag :email_address %>
-    <%= text_field_tag :email_address %><br>
-    <%= label_tag :password %>
-    <%= password_field_tag :password %><br>
-    <%= submit_tag :"Login" %>
-<% end %>
+<h1 class="m-3">Login</h1>
 
-<p>Don't have an account yet? <%= link_to "Sign up", new_user_path %></p>
-  
+ <%= form_tag(sessions_path, html: {class:"form-group"}) do %>
+    <div class="form-group mx-sm-3 mb-2">
+        <%= label_tag :email_address %>
+        <%= text_field_tag :email_address, '', class:"form-control" %><br>
+        <%= label_tag :password %>
+        <%= password_field_tag :password, '', class:"form-control" %><br>
+        <%= submit_tag :"Login", class:"btn btn-primary" %>
+    </div>
+<% end %>
+<p class="m-3">Don't have an account yet? <%= link_to "Sign up", new_user_path %></p>

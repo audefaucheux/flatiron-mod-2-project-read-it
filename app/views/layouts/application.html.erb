@@ -13,16 +13,17 @@
   <body>
 
   <%# HOME MENU %>
-  <nav>
-    <ul>
-      <% if !@current_user.nil? %>
-        <li class="home_menu"><%= link_to "library", books_path %></li>
-        <li class="home_menu"><%= link_to "my reading list", reading_list_path %></li>
-        <li class="user_menu"><%= link_to "settings", edit_user_path(@current_user) %></li>
-        <li class="user_menu"><%= link_to "log out", logout_path, {method: 'post'} %></li>
-      <% end %>
-    
-    </ul>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <%# <div class="collapse navbar-collapse"> %>
+      <ul class="navbar-nav">
+        <% if !@current_user.nil? %>
+          <li class="nav-item mr-3"><%= link_to "library", books_path, class:"nav-link small-caps" %></li>
+          <li class="nav-item mr-3"><%= link_to "my reading list", reading_list_path, class:"nav-link small-caps" %></li>
+          <li class="nav-item mr-3"><%= link_to "settings", edit_user_path(@current_user), class:"nav-link small-caps" %></li>
+          <li class="nav-item mr-3"><%= link_to "log out", logout_path, {method: 'post', class:"nav-link small-caps"} %></li>
+        <% end %>
+      </ul>
+    <%# </div> %>
   </nav>
 
   <%# HANDLING ERROR MESSAGES %>
@@ -34,13 +35,14 @@
   <% end %>
 
   <%# HANDLING NOTICE MESSAGES %>
-
   <% if flash[:notices] %>
-    <ul>
-      <% flash[:notices].each do |notice| %>
-        <li><%= notice %></li>
-      <% end %>
-    </ul>  
+    <% flash[:notices].each do |notice| %>
+    <div class="container mt-3 ml-0">
+      <div class="row">
+        <div class="alert alert-success col0"><%= notice %></div>
+      </div>
+    </div>
+    <% end %>
   <% end %>
   
     <%= yield %>
