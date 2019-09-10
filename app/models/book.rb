@@ -3,6 +3,10 @@ class Book < ApplicationRecord
   belongs_to :genre
   has_many :reviews
 
+  def find_book(title)
+    Book.find_by(title: title)
+  end
+
   def author_name
     self.author.name
   end

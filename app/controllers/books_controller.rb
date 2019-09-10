@@ -20,10 +20,16 @@ class BooksController < ApplicationController
         redirect_to '/books'
     end
 
-    # def search
-    #    search = params[:q]
-    #    request = JSON.parse("https://www.googleapis.com/books/v1/volumes?q=intitle:#{search}")[:items]
-    # end
+    def search
+       search = params[:q]
+       @request = JSON.parse(RestClient.get "https://www.googleapis.com/books/v1/volumes?q=intitle:#{search}&maxResults=10")["items"]
+       @books = Book.all
+       render 'index'
+    end
+
+    def new_book_from_api
+        raise params.inspect
+    end
 
     private
 

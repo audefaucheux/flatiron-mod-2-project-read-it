@@ -22,6 +22,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 # Use Json to open google read API
 gem 'json'
+gem 'rest-client'
 
 
 # Use Active Storage variant
