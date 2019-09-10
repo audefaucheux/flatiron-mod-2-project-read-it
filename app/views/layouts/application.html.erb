@@ -14,24 +14,25 @@
 
   <%# HOME MENU %>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <%# <div class="collapse navbar-collapse"> %>
-      <ul class="navbar-nav">
-        <% if !@current_user.nil? %>
-          <li class="nav-item mr-3"><%= link_to "library", books_path, class:"nav-link small-caps" %></li>
-          <li class="nav-item mr-3"><%= link_to "my reading list", reading_list_path, class:"nav-link small-caps" %></li>
-          <li class="nav-item mr-3"><%= link_to "settings", edit_user_path(@current_user), class:"nav-link small-caps" %></li>
-          <li class="nav-item mr-3"><%= link_to "log out", logout_path, {method: 'post', class:"nav-link small-caps"} %></li>
-        <% end %>
-      </ul>
-    <%# </div> %>
+    <ul class="navbar-nav">
+      <% if !@current_user.nil? %>
+        <li class="nav-item mr-3"><%= link_to "my reading list", reading_list_path, class:"nav-link small-caps" %></li>
+        <li class="nav-item mr-3"><%= link_to "library", books_path, class:"nav-link small-caps" %></li>
+        <li class="nav-item mr-3"><%= link_to "settings", edit_user_path(@current_user), class:"nav-link small-caps" %></li>
+        <li class="nav-item mr-3"><%= link_to "log out", logout_path, {method: 'post', class:"nav-link small-caps flex-end"} %></li>
+      <% end %>
+    </ul>
   </nav>
 
   <%# HANDLING ERROR MESSAGES %>
   <% if flash[:errors] %>
-    <h2>OOPS something went wrong with the below:</h2>
-      <% flash[:errors].each do |error| %>
-        <%= error %>
-      <% end %>
+    <% flash[:errors].each do |error| %>
+      <div class="container mt-3 ml-0">
+      <div class="row">
+        <div class="alert alert-danger col0"><%= error %></div>
+      </div>
+    </div>
+    <% end %>
   <% end %>
 
   <%# HANDLING NOTICE MESSAGES %>
