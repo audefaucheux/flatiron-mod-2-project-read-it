@@ -26,7 +26,11 @@
 
           <% if @current_user.book_exist(title) %>
             <% existing_book = @current_user.book_exist(title) %>
-            <td><%=link_to "Remove from reading list", "/remove_from_reading_list/#{existing_book.id}", {method: 'delete'} %></td>
+            <%= form_tag remove_from_reading_list_via_api_path, method: 'delete' do %>
+             <%= hidden_field_tag :search, @search %>
+             <%= hidden_field_tag :book_id, existing_book.id %>
+              <td><%= submit_tag :"Remove from Reading List" %></td>
+            <% end %>
           <%else%>
             <td><%=link_to "Add to reading list" %></td>
           <% end %>

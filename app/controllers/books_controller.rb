@@ -21,14 +21,19 @@ class BooksController < ApplicationController
     end
 
     def search
-       search = params[:q]
-       @request = JSON.parse(RestClient.get "https://www.googleapis.com/books/v1/volumes?q=intitle:#{search}&maxResults=10")["items"]
+       @search = params[:q]
+       @request = JSON.parse(RestClient.get "https://www.googleapis.com/books/v1/volumes?q=intitle:#{@search}&maxResults=10")["items"]
        @books = Book.all
        render 'index'
     end
 
+    def remove_from_reading_list_via_api
+        ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
+        redirect_to "/search?q=#{params[:search]}&commit=Search"
+    end
+
     def new_book_from_api
-        raise params.inspect
+
     end
 
     private
