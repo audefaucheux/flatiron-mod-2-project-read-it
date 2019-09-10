@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+html {
+    background-color: #88DBDF
+}
+
+body {
+    margin: 50px, 30px, 50px, 30px;
+    /* height: 100%;
+    width: 90%; */
+    padding: 30px 30px 30px 30px;
+    border-color: #88DBDF;
+    border-width: 30px;
+    border-style: solid;
+    background-color: white;
+}
+
+ ul {
+    list-style-type: none;
+    margin-top: 10;
+    padding: 0;
+}
+
+li {
+    display: inline;
+    margin-right: 30px;
+}
+
+li a { 
+    color: black;
+    font-size: 20px;
+    font-variant: small-caps;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #d0d0ce;
+    color: black;
+    text-decoration: none;
+}

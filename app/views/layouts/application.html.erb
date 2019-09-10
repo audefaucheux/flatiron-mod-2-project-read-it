@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%# <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> %>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -13,14 +13,17 @@
   <body>
 
   <%# HOME MENU %>
-  <%= link_to "Library", books_path %>
-
-  <% if !@current_user.nil? %>
-    <%= link_to "My Reading List", reading_list_path %>
-    <%= link_to "Settings", edit_user_path(@current_user) %>
-    <%= link_to "Log out", logout_path, {method: 'post'} %>
-    <%= @current_user.email_address %>
-  <% end %>
+  <nav>
+    <ul>
+      <% if !@current_user.nil? %>
+        <li class="home_menu"><%= link_to "library", books_path %></li>
+        <li class="home_menu"><%= link_to "my reading list", reading_list_path %></li>
+        <li class="user_menu"><%= link_to "settings", edit_user_path(@current_user) %></li>
+        <li class="user_menu"><%= link_to "log out", logout_path, {method: 'post'} %></li>
+      <% end %>
+    
+    </ul>
+  </nav>
 
   <%# HANDLING ERROR MESSAGES %>
   <% if flash[:errors] %>
@@ -39,7 +42,9 @@
       <% end %>
     </ul>  
   <% end %>
-
+  
     <%= yield %>
+
   </body>
+
 </html>

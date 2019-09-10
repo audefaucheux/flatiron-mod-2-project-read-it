@@ -23,6 +23,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Json to open google read API
 gem 'json'
 
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
