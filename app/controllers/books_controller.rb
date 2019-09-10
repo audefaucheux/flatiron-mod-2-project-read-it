@@ -20,15 +20,10 @@ class BooksController < ApplicationController
         redirect_to '/books'
     end
 
-    def search
-       search = params[:q]
-       request = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=intitle:#{search}").to_json
-       raise parsed_json.inspect
-    end
-
-    def results 
-
-    end
+    # def search
+    #    search = params[:q]
+    #    request = JSON.parse("https://www.googleapis.com/books/v1/volumes?q=intitle:#{search}")[:items]
+    # end
 
     private
 
