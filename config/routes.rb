@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   get '/reading_list', to: 'users#reading_list'
   post '/add_to_reading_list/:id', to: 'books#add_to_reading_list'
   delete '/remove_from_reading_list/:id', to: 'books#remove_from_reading_list'
+
   get '/search', to: 'books#search'
+  post '/new_book_from_api', to: 'books#new_book_from_api'
+  delete '/remove_from_reading_list_via_api', to: 'books#remove_from_reading_list_via_api'
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

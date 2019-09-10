@@ -12,4 +12,10 @@ class User < ApplicationRecord
     def total_books
         self.books.count
     end
+
+    def book_exist(title)
+        self.books.find do |book|
+            book.title == title
+        end
+    end
 end
