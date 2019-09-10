@@ -1,6 +1,11 @@
 <h1>Library</h1>
 
 <h3>Find a book:</h3>
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:q, "") %>
+  <%= text_field_tag(:q) %>
+  <%= submit_tag("Search") %>
+<% end %>
 
 <table>
     <tr>

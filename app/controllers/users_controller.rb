@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+    before_action :find_user, only: [:edit, :update]
+
     def new
         @user = User.new
     end
@@ -16,6 +18,16 @@ class UsersController < ApplicationController
         end
     end
 
+    def edit  
+    end
+
+    def update
+        @user.update(user_params)
+        @user.save
+        flash[:notices] = ["User updated"]
+        redirect_to edit_user_path(@user)
+    end
+
     def reading_list
         redirect_to root_path
     end
@@ -24,6 +36,10 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:email_address, :password, :password_confirmation)
+    end
+
+    def find_user
+        @user = User.find(params[:id])
     end
 
 end

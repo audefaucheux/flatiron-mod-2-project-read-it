@@ -14,6 +14,7 @@
     <%= review.user_email_address %> - <%= review.rating %>/5<br>
     "<%= review.content %>"<br>
     <% if review.user_id == @current_user.id %>
+        <%= link_to "edit", edit_review_path(id: review.id, book_id: @book.id), method:'get' %>  
         <%= link_to "delete", review_path(id: review.id, book_id: @book.id), method:'delete' %>  
     <% end %>
     <br><br>

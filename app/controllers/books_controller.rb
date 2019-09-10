@@ -20,6 +20,16 @@ class BooksController < ApplicationController
         redirect_to '/books'
     end
 
+    # def search
+    #    search = params[:q]
+    #    parsed_json = ActiveSupport::JSON.decode("https://www.googleapis.com/books/v1/volumes?q=intitle:#{search}")
+    #    raise parsed_json.inspect
+    # end
+
+    # def results 
+
+    # end
+
     private
 
     def find_book

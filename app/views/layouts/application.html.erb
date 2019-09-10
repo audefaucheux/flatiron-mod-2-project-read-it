@@ -17,7 +17,7 @@
 
   <% if !@current_user.nil? %>
     <%= link_to "My Reading List", reading_list_path %>
-    Settings
+    <%= link_to "Settings", edit_user_path(@current_user) %>
     <%= link_to "Log out", logout_path, {method: 'post'} %>
     <%= @current_user.email_address %>
   <% end %>
@@ -25,11 +25,19 @@
   <%# HANDLING ERROR MESSAGES %>
   <% if flash[:errors] %>
     <h2>OOPS something went wrong with the below:</h2>
-    <ul>
       <% flash[:errors].each do |error| %>
-        <li><%= error %></li>
+        <%= error %>
       <% end %>
-    </ul>
+  <% end %>
+
+  <%# HANDLING NOTICE MESSAGES %>
+
+  <% if flash[:notices] %>
+    <ul>
+      <% flash[:notices].each do |notice| %>
+        <li><%= notice %></li>
+      <% end %>
+    </ul>  
   <% end %>
 
     <%= yield %>
