@@ -20,15 +20,15 @@ class BooksController < ApplicationController
         redirect_to '/books'
     end
 
-    # def search
-    #    search = params[:q]
-    #    parsed_json = ActiveSupport::JSON.decode("https://www.googleapis.com/books/v1/volumes?q=intitle:#{search}")
-    #    raise parsed_json.inspect
-    # end
+    def search
+       search = params[:q]
+       request = HTTParty.get("https://www.googleapis.com/books/v1/volumes?q=intitle:#{search}").to_json
+       raise parsed_json.inspect
+    end
 
-    # def results 
+    def results 
 
-    # end
+    end
 
     private
 
