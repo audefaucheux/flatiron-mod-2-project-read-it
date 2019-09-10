@@ -16,8 +16,8 @@ class BooksController < ApplicationController
     end
 
     def remove_from_reading_list
-        ReadingList.find_by(user_id: @current_user.id, book_id: params[:id]).destroy
-        redirect_to '/books'
+        ReadingList.find_by(user_id: @current_user.id, book_id: params[:id]).destroy    
+        redirect_to '/reading_list'
     end
 
     def search

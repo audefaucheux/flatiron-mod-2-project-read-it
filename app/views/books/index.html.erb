@@ -17,17 +17,22 @@
       <% @request.each do |book| %>
         <tr>
           <td><%= title = book["volumeInfo"]["title"] %></td>
-          <td><% if book["volumeInfo"]["authors"].present? %>
-            <%=author = book["volumeInfo"]["authors"].first %>
-          <% end %></td>
-
-          <% if @current_user.books.include?(title) %>
-            <td><%= link_to "Remove from reading list", "/remove_from_reading_list/#{book.id}",{method: "delete"} %></td>
+          
+          <% if book["volumeInfo"]["authors"].present? %>
+            <td><%=author = book["volumeInfo"]["authors"].first %></td>
           <% else %>
-            <td><%= link_to "Add to reading list", new_book_from_api_path(book_hash: book) ,{method: "post"} %></td>
-          <%end%>
+            <td><%= nil %></td>
+          <% end %>
+
+          <% if @current_user.book_exist(title) %>
+            <% existing_book = @current_user.book_exist(title) %>
+            <td><%=link_to "Remove from reading list", "/remove_from_reading_list/#{existing_book.id}", {method: 'delete'} %></td>
+          <%else%>
+            <td><%=link_to "Add to reading list" %></td>
+          <% end %>
+
         </tr>
-      <%end%>
+      <% end %>
     </table>
 <% else %>
   <table>
