@@ -1,3 +1,15 @@
-<h1>Update user</h1>
-
-<%= render 'form' %>
+<h1 class="m-3">Update user <%= @user.email_address %></h1>
+  
+<div class="container mt-3 ml-0">
+    <%= form_for @user, html: {:class =>"form-group"} do |f| %>
+        <div class="row">
+            <div class="form-group col-4">
+                <%= f.label :password %>
+                <%= f.password_field :password, :class =>"form-control" %>
+                <%= f.label :password_confirmation %>
+                <%= f.password_field :password_confirmation, :class =>"form-control" %>
+                <%= f.submit :"Update password", :class => "btn btn-primary mt-3" %>
+            </div>
+        </div>
+    <% end %>
+</div>

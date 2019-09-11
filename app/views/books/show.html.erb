@@ -1,21 +1,27 @@
-<h1><%= @book.title %></h1>
-<h3>Author: <%= link_to @book.author_name, author_path(@book.author) %></h3>
-<h3>Genre: <%= @book.genre_name %></h3>
-
-<h3>Synopsis: </h3>
-<p><%= @book.synopsis %></p>
-
-<h3>Reviews:</h3>
-<p><%= link_to "Add Review", new_review_path(book_id: @book.id) %></p>
+<h1 class="m-3"><%= @book.title %></h1>
+<p class="m-3">
+    Author: <%= link_to @book.author_name, author_path(@book.author) %> | 
+    Genre: <%= @book.genre_name %>
+</p>
+<br>
+<h3 class="m-3">Synopsis: </h3>
+<p class="m-3"><%= @book.synopsis_cleansing %></p>
 
 <br>
-
+<h3 class="m-3">Reviews:</h3>
+<p class="m-3"><%= link_to "Add Review", new_review_path(book_id: @book.id), {class:"btn btn-primary"} %></p>
+<br>
 <% @book.reviews.each do |review| %>
-    <%= review.user_email_address %> - <%= review.rating %>/5<br>
-    "<%= review.content %>"<br>
-    <% if review.user_id == @current_user.id %>
-        <%= link_to "edit", edit_review_path(id: review.id, book_id: @book.id), method:'get' %>  
-        <%= link_to "delete", review_path(id: review.id, book_id: @book.id), method:'delete' %>  
-    <% end %>
-    <br><br>
+    <div class="card mb-3 m-3">
+        <div class="card-header">
+            <p><%= review.user_email_address %> - <%= review.rating %>/5</p>
+        </div>
+        <div class="card-body">
+            <p class="card-text">"<%= review.content %>"</p>
+            <% if review.user_id == @current_user.id %>
+                <%= link_to "edit", edit_review_path(id: review.id, book_id: @book.id), {method:'get', class:"btn btn-primary"} %>  
+                <%= link_to "delete", review_path(id: review.id, book_id: @book.id), {method:'delete', class:"btn btn-primary"} %>  
+            <% end %>
+        </div>
+    </div>
 <% end %>

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_09_06_132650) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "synopsis"
-    t.date "published_date"
+    t.string "published_date"
     t.integer "author_id", null: false
     t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false

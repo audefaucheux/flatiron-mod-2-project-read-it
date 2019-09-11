@@ -17,7 +17,7 @@ class BooksController < ApplicationController
 
     def remove_from_reading_list
         ReadingList.find_by(user_id: @current_user.id, book_id: params[:id]).destroy    
-        redirect_to '/reading_list'
+        redirect_to '/books'
     end
 
     def search
@@ -27,13 +27,39 @@ class BooksController < ApplicationController
        render 'index'
     end
 
-    def remove_from_reading_list_via_api
-        ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
-        redirect_to "/search?q=#{params[:search]}&commit=Search"
+    def add_to_reading_list_via_api
+
+        if params["book"]["author"].empty?
+            author = Author.find_or_create_by(name: "Anonymous")
+        else
+            author = Author.find_or_create_by(name: params["book"]["author"])
+        end
+
+        if params["book"]["genre"].empty?
+            genre = Genre.find_or_create_by(name: "None")
+        else
+            genre = Genre.find_or_create_by(name: params["book"]["genre"])
+        end
+        
+        book = Book.find_or_create_by(
+            title: params["book"]["title"], 
+            synopsis: params["book"]["synopsis"],
+            published_date: params["book"]["published_date"],
+            genre_id: genre.id,
+            author_id: author.id
+        )
+
+        @current_user.books << book
+
+        @search = (params[:search]).delete('\\"')
+        redirect_to "/search?q=#{@search}&commit=Search"
     end
 
-    def new_book_from_api
-
+    def remove_from_reading_list_via_api
+        ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
+        @search = params[:search]
+        
+        redirect_to "/search?q=#{@search}&commit=Search"
     end
 
     private

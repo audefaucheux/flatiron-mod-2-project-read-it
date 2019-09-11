@@ -30,4 +30,12 @@ class Book < ApplicationRecord
     end
   end
 
+  def synopsis_cleansing
+    if self.synopsis.empty?
+      "No synopsis available"
+    else
+      self.synopsis
+    end
+  end
+
 end
