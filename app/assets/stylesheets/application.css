@@ -19,17 +19,26 @@ html {
 }
 
 body {
-    margin: 5% 15% ;
-    padding: 30px 30px 30px 30px;
+    margin: 2% 15% ;
+    padding: 2%;
     border-color: #88DBDF;
     border-width: 30px;
     border-style: solid;
     background-color: white;
 }
 
+h5 {
+
+    font-size: 24pt;
+}
+p{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14pt;
+}
+
 .small-caps { 
     font-variant: small-caps;
-    font-size: 20px;
+    font-size: 24px;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-outline-success {
@@ -51,4 +60,11 @@ body {
     border-width: 0px;
     border-style: none;
     color: white;
+}
+
+.welcome {
+    border-width: 0px;
+    border-style: none;
+    color: #ff6f61;
+    
 }
