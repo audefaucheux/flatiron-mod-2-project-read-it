@@ -1,27 +1,30 @@
-<h1 class="m-3"><%= @book.title %></h1>
-<p class="m-3">
-    Author: <%= link_to @book.author_name, author_path(@book.author) %> | 
-    Genre: <%= @book.genre_name %>
+<h1 class="mt-3"><%= @book.title %></h1>
+<p>
+    <i>by <%= @book.author_name %></i> | Genre: <%= @book.genre_name %>
 </p>
-<br>
-<h3 class="m-3">Synopsis: </h3>
-<p class="m-3"><%= @book.synopsis_cleansing %></p>
 
-<br>
-<h3 class="m-3">Reviews:</h3>
-<p class="m-3"><%= link_to "Add Review", new_review_path(book_id: @book.id), {class:"btn btn-primary"} %></p>
+<h3 class="mt-4">Synopsis: </h3>
+<p class="mt-3"><%= @book.synopsis_cleansing %></p>
 
-<% @book.reviews.each do |review| %>
-    <div class="card mb-3 m-3">
-        <div class="card-header">
-            <%= review.user_email_address %> - <%= review.rating %>/5
+
+<h3 class="mt-4">Reviews:</h3>
+<p><%= link_to "Add Review", new_review_path(book_id: @book.id), {class:"btn btn-primary"} %></p>
+
+<% if @book.reviews.count != 0 %>
+    <% @book.reviews.each do |review| %>
+        <div class="card mb-3">
+            <div class="card-header">
+                <%= review.user_email_address %> - <%= review.rating %>/5
+            </div>
+            <div class="card-body">
+                <p class="card-text">"<%= review.content %>"</p>
+                <% if review.user_id == @current_user.id %>
+                    <%= link_to "Edit", edit_review_path(id: review.id, book_id: @book.id), {method:'get', class:"btn btn-primary"} %>  
+                    <%= link_to "Delete", review_path(id: review.id, book_id: @book.id), {method:'delete', class:"btn btn-danger"} %>  
+                <% end %>
+            </div>
         </div>
-        <div class="card-body">
-            <p class="card-text">"<%= review.content %>"</p>
-            <% if review.user_id == @current_user.id %>
-                <%= link_to "Edit", edit_review_path(id: review.id, book_id: @book.id), {method:'get', class:"btn btn-primary"} %>  
-                <%= link_to "Delete", review_path(id: review.id, book_id: @book.id), {method:'delete', class:"btn btn-danger"} %>  
-            <% end %>
-        </div>
-    </div>
+    <% end %>
+<% else %>
+    <p>No one has left a review yet. Be the first to add one! </p>
 <% end %>

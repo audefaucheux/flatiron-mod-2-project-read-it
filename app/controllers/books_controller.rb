@@ -10,20 +10,9 @@ class BooksController < ApplicationController
     def show
     end
 
-    def add_to_reading_list
-        ReadingList.create(user_id: @current_user.id, book_id: params[:id])
-        redirect_to '/books'
-    end
-
-    def remove_from_reading_list
-        ReadingList.find_by(user_id: @current_user.id, book_id: params[:id]).destroy    
-        redirect_to '/books'
-    end
-
     def search
        @search = params[:q]
        @request = JSON.parse(RestClient.get "https://www.googleapis.com/books/v1/volumes?q=intitle:#{@search}&maxResults=10")["items"]
-       @books = Book.all
        render 'index'
     end
 
@@ -59,7 +48,6 @@ class BooksController < ApplicationController
     def remove_from_reading_list_via_api
         ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
         @search = params[:search]
-        
         redirect_to "/search?q=#{@search}&commit=Search"
     end
 
