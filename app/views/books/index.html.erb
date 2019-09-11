@@ -4,14 +4,14 @@
 <%= form_tag :"search", method: "get", class: "form-inline m-3 my-2 my-lg-0" do %>
 <%= text_field_tag :"q", nil, placeholder: "Search", class: "form-control mr-sm-2" %>
 
-   <%= submit_tag :"Search", class: "btn btn-outline-success my-2 my-sm-0"%>
+   <%= submit_tag :"Search", class: "btn btn-primary my-2 my-sm-0"%>
 <% end %>
 
 
 
 <% if @request %>
       <% @request.each do |book| %>
-<div class="card m-3">
+<div class="card m-3">  
   <div class="card-header">
 
   </div>
