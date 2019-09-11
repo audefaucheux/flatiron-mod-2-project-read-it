@@ -41,6 +41,12 @@ p{
     font-size: 14pt;
 }
 
+.img_book_fit {
+    width:200px;
+    height:300px;
+    object-fit:cover;
+}
+
 .small-caps { 
     font-variant: small-caps;
     font-size: 24px;
@@ -54,7 +60,7 @@ p{
 }
 
 .btn-remove, .btn-remove:hover {
-    background-color: #a79897 !important;
+    background-color: #ff6f61 !important;
     border-width: 0px;
     border-style: none;
     color: white;

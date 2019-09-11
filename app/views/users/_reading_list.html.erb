@@ -1,20 +1,24 @@
 <h1 class="text-center">My Reading List</h1>
 <p class="text-center">Total books: <%= @current_user.total_books %></p>
 
-<div class="row ml-1 mt-2">
+<% if @current_user.books.count == 0 %>
+    <p>You have no book saved on your reading list</p>
+<% else %>
     <% @current_user.books.each do |book| %>
-        <div class="card col-sm-3" style="width: 18rem;">
-        <% if book.img_url.empty? %>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" class="card-img-top" alt="book_cover">
-        <% else %>
-            <img src="<%= book.img_url %>" class="card-img-top" alt="book_cover">
-        <% end %>
-            <div class="card-body">
-                <h3 class="card-title"><%= link_to book.title, book %></h3>
-                <p><i class="card-text">by <%= book.author_name %></i></p>
-                <p class="card-text"><%= h truncate(book.synopsis_cleansing, :length => 80) %></p>
-                <p><%= link_to "Add a review", new_review_path(book_id: book.id), class:"btn btn-primary" %></p>
+        <div class="row ml-1 mt-2">
+            <div class="card col-sm-4" style="width: 18rem; max-height: 50%">
+            <% if book.img_url.empty? %>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" class="card-img-top img_book_fit" alt="book_cover">
+            <% else %>
+                <img src="<%= book.img_url %>" class="card-img-top" alt="book_cover">
+            <% end %>
+                <div class="card-body">
+                    <h3 class="card-title"><%= link_to book.title, book %></h3>
+                    <p><i class="card-text">by <%= book.author_name %></i></p>
+                    <p class="card-text"><%= h truncate(book.synopsis_cleansing, :length => 80) %></p>
+                    <p><%= link_to "Add a review", new_review_path(book_id: book.id), class:"btn btn-primary" %></p>
+                </div>
             </div>
         </div>
     <% end %>
-</div>
+<% end %>

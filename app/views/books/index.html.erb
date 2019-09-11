@@ -17,7 +17,7 @@
           <% else %>
             <% book_image = book["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
           <% end %>
-          <img src=<%= book_image %> class="card-img" alt="book_cover">
+          <img src=<%= book_image %> class="card-img img_book_fit" alt="book_cover">
         </div>
         <div class="col-md-9">
           <div class="card-body">
@@ -34,7 +34,7 @@
             <p class="card-text">
             
             <% if book["volumeInfo"]["description"].present? %>
-              <%=synopsis = book["volumeInfo"]["description"].truncate(400)%>
+              <%=synopsis = book["volumeInfo"]["description"].truncate(200)%>
             <%else%>
               <%= "No synopsis available" %>
             <% end %></p>
