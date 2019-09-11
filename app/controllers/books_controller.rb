@@ -46,7 +46,8 @@ class BooksController < ApplicationController
             synopsis: params["book"]["synopsis"],
             published_date: params["book"]["published_date"],
             genre_id: genre.id,
-            author_id: author.id
+            author_id: author.id,
+            img_url: params["book"]["img_url"]
         )
 
         @current_user.books << book
