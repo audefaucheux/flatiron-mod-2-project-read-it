@@ -12,11 +12,12 @@
     <div class="card mt-3" style="max-width: 100%; max-height: 10%;">
       <div class="row no-gutters">
         <div class="col-md-3">
-          <% if book["volumeInfo"]["imageLinks"]["smallThumbnail"].empty? %>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" class="card-img" alt="book_cover">
+          <% if !book["volumeInfo"]["imageLinks"].present?%>
+            <% book_image = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" %>
           <% else %>
-            <img src=<%= book["volumeInfo"]["imageLinks"]["smallThumbnail"]%> class="card-img" alt="book_cover">
+            <% book_image = book["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
           <% end %>
+          <img src=<%= book_image %> class="card-img" alt="book_cover">
         </div>
         <div class="col-md-9">
           <div class="card-body">
@@ -55,7 +56,7 @@
                 <%= hidden_field_tag :"book[published_date]", book["volumeInfo"]["publishedDate"] %>
                 <%= hidden_field_tag :"book[genre]", book["volumeInfo"]["categories"] %>
                 <%= hidden_field_tag :"book[author]", author %>
-                <%= hidden_field_tag :"book[img_url]", book["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
+                <%= hidden_field_tag :"book[img_url]", book_image %>
                 <%= submit_tag :"Add to Reading List", class: "btn btn-primary m-3"%>
                 <p class = " btn btn-inactive m-3">Remove from Reading List</p>
               <% end %>
