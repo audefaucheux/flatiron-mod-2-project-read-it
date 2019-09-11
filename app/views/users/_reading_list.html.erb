@@ -3,10 +3,15 @@
 
 <div class="row ml-1 mt-2">
     <% @current_user.books.each do |book| %>
-        <div class="card col-sm-3 m-2" style="width: 18rem;">
-        <%# <img src="..." class="card-img-top" alt="..."> %>
+        <div class="card col-sm-3" style="width: 18rem;">
+        <% if book.img_url.empty? %>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" class="card-img-top" alt="book_cover">
+        <% else %>
+            <img src="<%= book.img_url %>" class="card-img-top" alt="book_cover">
+        <% end %>
             <div class="card-body">
-                <h5 class="card-title"><%= link_to book.title, book %></h5>
+                <h3 class="card-title"><%= link_to book.title, book %></h3>
+                <p><i class="card-text">by <%= book.author_name %></i></p>
                 <p class="card-text"><%= h truncate(book.synopsis_cleansing, :length => 80) %></p>
                 <p><%= link_to "Add a review", new_review_path(book_id: book.id), class:"btn btn-primary" %></p>
             </div>
