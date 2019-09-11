@@ -7,7 +7,7 @@
         <%# <img src="..." class="card-img-top" alt="..."> %>
             <div class="card-body">
                 <h5 class="card-title"><%= link_to book.title, book %></h5>
-                <p class="card-text"><%= h truncate(book.synopsis, :length => 80) %></p>
+                <p class="card-text"><%= h truncate(book.synopsis_cleansing, :length => 80) %></p>
                 <p><%= link_to "Add a review", new_review_path(book_id: book.id), class:"btn btn-primary" %></p>
             </div>
         </div>
