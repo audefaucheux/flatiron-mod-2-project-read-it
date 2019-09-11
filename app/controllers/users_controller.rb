@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 
+    before_action :current_user
     before_action :find_user, only: [:edit, :update]
 
     def new
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
     end
 
     def edit  
+        @user = @current_user
     end
 
     def update
