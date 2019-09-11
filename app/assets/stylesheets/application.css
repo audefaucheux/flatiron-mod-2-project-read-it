@@ -19,7 +19,7 @@ html {
 }
 
 body {
-    margin: 40%, 40%, 40%, 40%;
+    margin: 5% 15% ;
     padding: 30px 30px 30px 30px;
     border-color: #88DBDF;
     border-width: 30px;
@@ -30,4 +30,25 @@ body {
 .small-caps { 
     font-variant: small-caps;
     font-size: 20px;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-outline-success {
+    background-color: #009ca6 !important;
+    border-width: 0px;
+    border-style: none;
+    color: white;
+}
+
+.btn-remove {
+    background-color: #ff6f61 !important;
+    border-width: 0px;
+    border-style: none;
+    color: white;
+}
+
+.btn-inactive, .btn-inactive:hover {
+    background-color: #bbbcbc !important;
+    border-width: 0px;
+    border-style: none;
+    color: white;
 }

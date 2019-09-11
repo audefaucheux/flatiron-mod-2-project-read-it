@@ -19,10 +19,10 @@
     <h5 class="card-title">
         <%= title = book["volumeInfo"]["title"] %></h5>          
     <p class="card-text">
-          <i><% if book["volumeInfo"]["authors"].present? %>
-            by <%=author = book["volumeInfo"]["authors"].first %></i>
+          <% if book["volumeInfo"]["authors"].present? %>
+           <i> by <%=author = book["volumeInfo"]["authors"].first %></i>
                      <% else %>
-          <i>  <%= "No author available" %></i>
+          <i> <%= "No author available" %></i>
           <% end %></p>
            <p class="card-text">
     <% if book["volumeInfo"]["description"].present? %>
@@ -37,7 +37,8 @@
              <%= hidden_field_tag :search, @search %>
              <%= hidden_field_tag :book_id, existing_book.id %>
              <%= hidden_field_tag :author_id, existing_book.author.name %>
-             <%= submit_tag :"Remove from Reading List", class: "btn btn-primary m-3"%>
+             <p class = " btn btn-inactive m-3">Add to Reading List</p>
+             <%= submit_tag :"Remove from Reading List", class: "btn btn-remove m-3"%>
              <% end %>
              <% else %>
              <%= form_tag add_to_reading_list_via_api_path, method: 'post' do %>
@@ -48,6 +49,7 @@
               <%= hidden_field_tag :"book[genre]", book["volumeInfo"]["categories"] %>
               <%= hidden_field_tag :"book[author]", author %>
               <%= submit_tag :"Add to Reading List", class: "btn btn-primary m-3"%>
+              <p class = " btn btn-inactive m-3">Remove from Reading List</p>
             <% end %>
             <% end %>
   </div>
