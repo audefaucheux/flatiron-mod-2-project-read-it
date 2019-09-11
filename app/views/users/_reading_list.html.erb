@@ -4,7 +4,11 @@
 <div class="row ml-1 mt-2">
     <% @current_user.books.each do |book| %>
         <div class="card col-sm-3 m-2" style="width: 18rem;">
-        <%# <img src="..." class="card-img-top" alt="..."> %>
+        <% if book.img_url.empty? %>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" class="card-img-top" alt="book_cover">
+        <% else %>
+            <img src="<%= book.img_url %>" class="card-img-top" alt="book_cover">
+        <% end %>
             <div class="card-body">
                 <h5 class="card-title"><%= link_to book.title, book %></h5>
                 <p class="card-text"><%= h truncate(book.synopsis_cleansing, :length => 80) %></p>

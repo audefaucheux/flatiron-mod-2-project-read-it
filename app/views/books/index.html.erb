@@ -1,58 +1,67 @@
-<h1 class="text-left m-3 mt-2">Library </h1>
+<h1 class="text-left mt-2">Library </h1>
 
-<h3 class = "text-left m-3">Find a book:</h3>
-<%= form_tag :"search", method: "get", class: "form-inline m-3 my-2 my-lg-0" do %>
+<h3 class="text-left">Find a book:</h3>
+<%= form_tag :"search", method: "get", class: "form-inline my-2 my-lg-0" do %>
 <%= text_field_tag :"q", nil, placeholder: "Search", class: "form-control mr-sm-2" %>
 
    <%= submit_tag :"Search", class: "btn btn-outline-success my-2 my-sm-0"%>
 <% end %>
 
-
-
 <% if @request %>
   <% @request.each do |book| %>
-    <div class="card m-3">
-      <div class="card-header"></div>
-      <div class="card-body">
-        <h5 class="card-title"><%= title = book["volumeInfo"]["title"] %></h5>          
-        <p class="card-text">
-          <i>
-            <% if book["volumeInfo"]["authors"].present? %> 
-              by <%=author = book["volumeInfo"]["authors"].first %>
+    <div class="card mt-3" style="max-width: 100%; max-height: 10%;">
+      <div class="row no-gutters">
+        <div class="col-md-3">
+          <% if book["volumeInfo"]["imageLinks"]["smallThumbnail"].empty? %>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" class="card-img" alt="book_cover">
+          <% else %>
+            <img src=<%= book["volumeInfo"]["imageLinks"]["smallThumbnail"]%> class="card-img" alt="book_cover">
+          <% end %>
+        </div>
+        <div class="col-md-9">
+          <div class="card-body">
+            <h5 class="card-title"><%= title = book["volumeInfo"]["title"] %></h5>
+            <p class="card-text">
+              <i>
+                <% if book["volumeInfo"]["authors"].present? %> 
+                  by <%=author = book["volumeInfo"]["authors"].first %>
+                <% else %>
+                  <%= "No author available" %>
+                <% end %>
+              </i>
+            </p>
+            <p class="card-text">
+            
+            <% if book["volumeInfo"]["description"].present? %>
+              <%=synopsis = book["volumeInfo"]["description"].truncate(400)%>
+            <%else%>
+              <%= "No synopsis available" %>
+            <% end %></p>
+            
+            <% if @current_user.book_exist(title, author) %>
+              <% existing_book = @current_user.book_exist(title, author) %>
+              <%= form_tag remove_from_reading_list_via_api_path, method: 'delete' do %>
+                <%= hidden_field_tag :search, @search %>
+                <%= hidden_field_tag :book_id, existing_book.id %>
+                <%= hidden_field_tag :author_id, existing_book.author.name %>
+                <%= submit_tag :"Remove from Reading List", class: "btn btn-remove m-3"%>
+                <p class = " btn btn-inactive m-3">Add to Reading List</p>
+              <% end %>
             <% else %>
-              <%= "No author available" %>
+              <%= form_tag add_to_reading_list_via_api_path, method: 'post' do %>
+                <%= hidden_field_tag :search, @search %>
+                <%= hidden_field_tag :"book[title]", title %>
+                <%= hidden_field_tag :"book[synopsis]", book["volumeInfo"]["description"] %>
+                <%= hidden_field_tag :"book[published_date]", book["volumeInfo"]["publishedDate"] %>
+                <%= hidden_field_tag :"book[genre]", book["volumeInfo"]["categories"] %>
+                <%= hidden_field_tag :"book[author]", author %>
+                <%= hidden_field_tag :"book[img_url]", book["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
+                <%= submit_tag :"Add to Reading List", class: "btn btn-primary m-3"%>
+                <p class = " btn btn-inactive m-3">Remove from Reading List</p>
+              <% end %>
             <% end %>
-          </i>
-        </p>
-        <p class="card-text">
-        
-        <% if book["volumeInfo"]["description"].present? %>
-          <%=synopsis = book["volumeInfo"]["description"].truncate(500)%>
-        <%else%>
-          <%= "No synopsis available" %>
-        <% end %></p>
-        
-        <% if @current_user.book_exist(title, author) %>
-          <% existing_book = @current_user.book_exist(title, author) %>
-          <%= form_tag remove_from_reading_list_via_api_path, method: 'delete' do %>
-            <%= hidden_field_tag :search, @search %>
-            <%= hidden_field_tag :book_id, existing_book.id %>
-            <%= hidden_field_tag :author_id, existing_book.author.name %>
-            <%= submit_tag :"Remove from Reading List", class: "btn btn-remove m-3"%>
-            <p class = " btn btn-inactive m-3">Add to Reading List</p>
-          <% end %>
-        <% else %>
-          <%= form_tag add_to_reading_list_via_api_path, method: 'post' do %>
-            <%= hidden_field_tag :search, @search %>
-            <%= hidden_field_tag :"book[title]", title %>
-            <%= hidden_field_tag :"book[synopsis]", book["volumeInfo"]["description"] %>
-            <%= hidden_field_tag :"book[published_date]", book["volumeInfo"]["publishedDate"] %>
-            <%= hidden_field_tag :"book[genre]", book["volumeInfo"]["categories"] %>
-            <%= hidden_field_tag :"book[author]", author %>
-            <%= submit_tag :"Add to Reading List", class: "btn btn-primary m-3"%>
-            <p class = " btn btn-inactive m-3">Remove from Reading List</p>
-          <% end %>
-        <% end %>
+          </div>
+        </div>
       </div>
     </div>
   <% end %>
