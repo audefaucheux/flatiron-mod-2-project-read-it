@@ -13,9 +13,9 @@ class User < ApplicationRecord
         self.books.count
     end
 
-    def book_exist(title)
+    def book_exist(title, author)
         self.books.find do |book|
-            book.title == title
+            book.title == title && book.author.name == author
         end
     end
 end
