@@ -45,8 +45,8 @@
                 <%= hidden_field_tag :search, @search %>
                 <%= hidden_field_tag :book_id, existing_book.id %>
                 <%= hidden_field_tag :author_id, existing_book.author.name %>
-                <%= submit_tag :"Remove from Reading List", class: "btn btn-remove m-3"%>
                 <p class = " btn btn-inactive m-3">Add to Reading List</p>
+                <%= submit_tag :"Remove from Reading List", class: "btn btn-remove m-3"%>
               <% end %>
             <% else %>
               <%= form_tag add_to_reading_list_via_api_path, method: 'post' do %>

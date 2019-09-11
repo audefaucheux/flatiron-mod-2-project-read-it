@@ -2,7 +2,7 @@
 <p class="text-center">Total books: <%= @current_user.total_books %></p>
 
 <% if @current_user.books.count == 0 %>
-    <p>You have no book saved on your reading list</p>
+    <p>You have no books saved on your reading list. Why not find your next favourite read in the Library?</p>
 <% else %>
     <% @current_user.books.each do |book| %>
         <div class="row ml-1 mt-2">
