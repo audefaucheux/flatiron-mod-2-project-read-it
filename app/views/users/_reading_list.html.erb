@@ -1,13 +1,17 @@
 <h1 class="text-center">My Reading List</h1>
-<p class="text-center">Total books: <%= @current_user.total_books %></p>
+<% if  @current_user.total_books == 1 %>
+    <p class="text-center">You have <%= @current_user.total_books %> book on your reading list.</p> 
+<% else %>
+<p class="text-center">You have <%= @current_user.total_books %> books on your reading list.</p>
+<% end %>
 
 <% if @current_user.books.count == 0 %>
-    <p>You have no book saved on your reading list</p>
+    <p class="text-center"><i>You have no books saved on your reading list yet. Why not find your next favourite read in the Library?</i></p>
 <% else %>
     <% @current_user.books.each do |book| %>
         <div class="row ml-1 mt-2">
             <div class="card col-sm-4" style="width: 18rem; max-height: 50%">
-            <% if book.img_url.empty? %>
+            <% if book.img_url.nil? %>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" class="card-img-top img_book_fit" alt="book_cover">
             <% else %>
                 <img src="<%= book.img_url %>" class="card-img-top" alt="book_cover">
@@ -17,8 +21,15 @@
                     <p><i class="card-text">by <%= book.author_name %></i></p>
                     <p class="card-text"><%= h truncate(book.synopsis_cleansing, :length => 80) %></p>
                     <p><%= link_to "Add a review", new_review_path(book_id: book.id), class:"btn btn-primary" %></p>
+                    <%= form_tag remove_from_reading_list_path, method: 'delete' do %>
+                    <%= hidden_field_tag :search, @search %>
+                    <%= hidden_field_tag :book_id, book.id %>
+                    <%= hidden_field_tag :author_id, book.author.name %>
+                    <%= submit_tag :"Remove from Reading List", class: "btn btn-remove"%>
+                    <%end%>
                 </div>
             </div>
         </div>
     <% end %>
 <% end %>
+        
