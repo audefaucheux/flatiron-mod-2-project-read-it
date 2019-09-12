@@ -76,6 +76,13 @@ p{
     color: white;
 }
 
+.btn-burgundy, .btn-burgundy-hover {
+    background-color: #933e3a !important;
+    border-width: 0px;
+    border-style: none;
+    color: white;  
+}
+
 .welcome {
     letter-spacing: 0.02em;
     border-width: 0px;
