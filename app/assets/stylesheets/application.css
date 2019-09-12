@@ -21,6 +21,10 @@ html {
     
 }
 
+a {
+    color: #009ca6
+}
+
 body {
     margin: 2% 15% ;
     padding: 2%;
@@ -117,3 +121,14 @@ nav a:hover {
 .book a, .book a:hover {
     color: #009ca6 !important;
 }
+
+.confused-paige {
+    opacity: 0.3;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 80px;
+    padding: 3%;
+    width: 40%;
+  }

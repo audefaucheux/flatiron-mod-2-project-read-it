@@ -8,7 +8,9 @@
 <% end %>
 
 
-<% if @request %>
+<% if @request.nil? %> 
+<img src= "https://i.imgur.com/mDC0Ta8.png" class="confused-paige">
+<%else%>
   <% @request.each do |book| %>
     <div class="card mt-3" style="max-width: 100%; max-height: 10%;">
       <div class="row no-gutters">
