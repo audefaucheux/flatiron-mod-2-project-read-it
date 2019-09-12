@@ -78,8 +78,7 @@ p{
     border-style: none;
     color: #ff6f61;
     font-family: 'Lobster';
-    font-weight: 900;
-    font-size: 48px;
+    font-size: 56px;
 
 }
 
@@ -109,3 +108,12 @@ nav a:hover {
         font-size: 2.5em !important;
         font-family: 'Lobster'
     }
+
+.book {
+    color: #009ca6 !important;
+    font-size: 2em !important;
+    font-family: 'Lobster';    
+}
+.book a, .book a:hover {
+    color: #009ca6 !important;
+}
