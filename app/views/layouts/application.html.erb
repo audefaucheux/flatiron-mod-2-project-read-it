@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ReadIt</title>
+    <title>Read.it</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display|Roboto&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,16 +15,21 @@
   <body>
 
   <%# HOME MENU %>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  
+    <nav class="navbar navbar-expand-lg">
+    <img class = "logo mr-4" src = "https://i.imgur.com/aDPJrpi.png" alt = "Paige Turner" height = 10% width = 10% >
     <ul class="navbar-nav">
       <% if !@current_user.nil? %>
-        <li class="nav-item mr-3"><%= link_to "my reading list", reading_list_path, class:"nav-link small-caps" %></li>
+        <li class="nav-item mr-3"><%= link_to "reading list", reading_list_path, class:"nav-link small-caps" %></li>
         <li class="nav-item mr-3"><%= link_to "library", books_path, class:"nav-link small-caps" %></li>
         <li class="nav-item mr-3"><%= link_to "settings", edit_user_path(@current_user), class:"nav-link small-caps" %></li>
         <li class="nav-item mr-3"><%= link_to "log out", logout_path, {method: 'post', class:"nav-link small-caps flex-end"} %></li>
+        </ul>
       <% end %>
-    </ul>
+      
+    
   </nav>
+
 
   <%# HANDLING ERROR MESSAGES %>
   <% if flash[:errors] %>
@@ -49,5 +56,6 @@
     <%= yield %>
 
   </body>
+
 
 </html>

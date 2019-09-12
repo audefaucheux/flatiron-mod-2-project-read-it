@@ -1,3 +1,3 @@
-<p class="pt-3 m-2">Welcome, <%= @current_user.email_address %>!</p>
+<p class="welcome text-center pt-3 m-2">Welcome, <%= @current_user.email_address.split(/@/).first %>!</p>
 
 <%= render 'users/reading_list' %>
