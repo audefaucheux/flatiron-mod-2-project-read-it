@@ -5,6 +5,8 @@ class User < ApplicationRecord
     has_many :reviews
     has_many :books, through: :reading_lists
 
+    validates :username, presence: true
+    validates :username, uniqueness: true
     validates :email_address, presence: true
     validates :email_address, uniqueness: true
     validates :password, presence: true

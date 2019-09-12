@@ -1,6 +1,6 @@
 <h1 class="mt-3"><%= @book.title %></h1>
 <p>
-    <i>by <%= @book.author_name %></i> | Genre: <%= @book.genre_name %>
+    <em>by <%= @book.author_name %></em> | User Rating: <%= @book.average_rating.to_i %>/5 | Genre: <%= @book.genre_name %>
 </p>
 
 <h3 class="mt-4">Synopsis: </h3>
@@ -14,7 +14,7 @@
     <% @book.reviews.each do |review| %>
         <div class="card mb-3">
             <div class="card-header">
-                <%= review.user_email_address %> - <%= review.rating %>/5
+                <%= review.username %> - <%= review.rating %>/5
             </div>
             <div class="card-body">
                 <p class="card-text">"<%= review.content %>"</p>
