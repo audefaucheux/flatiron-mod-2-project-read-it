@@ -1,35 +1,47 @@
-<h1 class="text-center">My Reading List</h1>
-<% if  @current_user.total_books == 1 %>
-    <p class="text-center">You have <%= @current_user.total_books %> book on your reading list.</p> 
-<% else %>
-<p class="text-center">You have <%= @current_user.total_books %> books on your reading list.</p>
-<% end %>
+<h1 class="small-caps text-center">my reading list</h1>
 
+<br>
 <% if @current_user.books.count == 0 %>
-    <p class="text-center"><i>You have no books saved on your reading list yet. Why not find your next favourite read in the Library?</i></p>
+    <p class="text-center">
+        <em>You have no books saved on your reading list yet. Why not find your next favourite read in the <%= link_to "Library", books_path %>?</em>
+        <img src="https://i.imgur.com/d1CWqTL.png" alt="crying_paige" class="sad-paige">
+    </p>
 <% else %>
     <% @current_user.books.each do |book| %>
-        <div class="row ml-1 mt-2">
-            <div class="card col-sm-4" style="width: 18rem; max-height: 50%">
-            <% if book.img_url.nil? %>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" class="card-img-top img_book_fit" alt="book_cover">
-            <% else %>
-                <img src="<%= book.img_url %>" class="card-img-top" alt="book_cover">
-            <% end %>
-                <div class="card-body">
-                    <h3 class="card-title"><%= link_to book.title, book %></h3>
-                    <p><i class="card-text">by <%= book.author_name %></i></p>
-                    <p class="card-text"><%= h truncate(book.synopsis_cleansing, :length => 80) %></p>
-                    <p><%= link_to "Add a review", new_review_path(book_id: book.id), class:"btn btn-primary" %></p>
-                    <%= form_tag remove_from_reading_list_path, method: 'delete' do %>
-                    <%= hidden_field_tag :search, @search %>
-                    <%= hidden_field_tag :book_id, book.id %>
-                    <%= hidden_field_tag :author_id, book.author.name %>
-                    <%= submit_tag :"Remove from Reading List", class: "btn btn-remove"%>
-                    <%end%>
+        <div class="card mt-3" style="max-width: 100%; max-height: 10%;">
+            <div class="row no-gutters">
+                <div class="col-md-3">
+                    <% if book.img_url.nil? %>
+                        <img src="https://i.imgur.com/mDC0Ta8.png" class="card-img-top img_book_fit" alt="book_cover">
+                    <% else %>
+                        <img src="<%= book.img_url %>" class="card-img-top" alt="book_cover">
+                    <% end %>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="card-body">
+                        <h3 class="card-title"><%= link_to book.title, book %></h3>
+                        <p><em class="card-text">by <%= book.author_name %></em></p>
+                        <p class="card-text"><%= h truncate(book.synopsis_cleansing, :length => 200) %></p>
+                        
+                        <%= form_tag remove_from_reading_list_path, method: 'delete' do %>
+                            <%= hidden_field_tag :search, @search %>
+                            <%= hidden_field_tag :book_id, book.id %>
+                            <%= hidden_field_tag :author_id, book.author.name %>
+                            <% if !book.web_reader_link.empty?%>
+                                <%= link_to "Read book", book.web_reader_link, target:"_blank", class:"btn btn-burgundy" %>
+                            <% else %>
+                                <p class = " btn btn-inactive m-3">Read book</p>
+                            <% end %>
+                            <%= link_to "Add a review", new_review_path(book_id: book.id), class:"btn btn-primary" %>
+                            <%= submit_tag :"Remove from Reading List", class: "btn btn-remove"%>
+                        <%end%>
+                    </div>
                 </div>
             </div>
         </div>
     <% end %>
 <% end %>
-        
+
+
+

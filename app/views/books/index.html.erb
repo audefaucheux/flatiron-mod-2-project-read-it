@@ -1,20 +1,24 @@
 <div class = "search-form"> 
-<p class="welcome text-center pt-3 m-2">Library </p>
-<h1 class="text-center m-2">Find a book:</h3>
-<%= form_tag :"search", method: "get", class: "form-inline m-2 my-2 my-lg-0" do %>
-<%= text_field_tag :"q", nil, placeholder: "Search", class: "form-control mr-sm-2" %>
-   <%= submit_tag :"Search", class: "btn btn-primary my-2 my-sm-0"%>
-   </div>
-<% end %>
+  <p class="welcome text-center m-2">Library </p>
+  <h1 class="text-center small-caps m-2">find a book:</h1>
+  <%= form_tag :"search", method: "get", class: "form-inline pt-2 m-2 my-2 my-lg-0" do %>
+    <%= text_field_tag :"q", "", placeholder: "Search", class: "form-control pt-2 mr-sm-2" %>
+    <%= submit_tag :"Search", class: "btn btn-primary my-2 my-sm-0"%>
+  <% end %>
+</div>
 
-
-<% if @request %>
+<% if @request.nil? && !@search.empty? %>
+    <p class="text-center mt-3">
+        <em>Hmmm... I can't seem to find "<%= @search %>".</em>
+    </p>
+    <img src= "https://i.imgur.com/mDC0Ta8.png" class="confused-paige">
+<%elsif !@request.nil?%>
   <% @request.each do |book| %>
-    <div class="card mt-3" style="max-width: 100%; max-height: 10%;">
+    <div class="card mt-4" style="max-width: 100%; max-height: 10%;">
       <div class="row no-gutters">
         <div class="col-md-3">
           <% if !book["volumeInfo"]["imageLinks"].present?%>
-            <% book_image = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" %>
+            <% book_image = "https://i.imgur.com/mDC0Ta8.png" %>
           <% else %>
             <% book_image = book["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
           <% end %>
@@ -22,15 +26,15 @@
         </div>
         <div class="col-md-9">
           <div class="card-body">
-            <h5 class="card-title"><%= title = book["volumeInfo"]["title"] %></h5>
+            <h5 class="card-title book"><%= title = book["volumeInfo"]["title"] %></h5>
             <p class="card-text">
-              <i>
+              <em>
                 <% if book["volumeInfo"]["authors"].present? %> 
                   by <%=author = book["volumeInfo"]["authors"].first %>
                 <% else %>
                   <%= "No author available" %>
                 <% end %>
-              </i>
+              </em>
             </p>
             <p class="card-text">
             
@@ -38,8 +42,8 @@
               <%=synopsis = book["volumeInfo"]["description"].truncate(200)%>
             <%else%>
               <%= "No synopsis available" %>
-            <% end %></p>
-            
+            <% end %>
+
             <% if @current_user.book_exist(title, author) %>
               <% existing_book = @current_user.book_exist(title, author) %>
               <%= form_tag remove_from_reading_list_via_api_path, method: 'delete' do %>
@@ -48,7 +52,6 @@
                 <%= hidden_field_tag :author_id, existing_book.author.name %>
                 <p class = " btn btn-inactive m-3">Add to Reading List</p>
                 <%= submit_tag :"Remove from Reading List", class: "btn btn-remove m-3"%>
-
               <% end %>
             <% else %>
               <%= form_tag add_to_reading_list_via_api_path, method: 'post' do %>
@@ -59,6 +62,7 @@
                 <%= hidden_field_tag :"book[genre]", book["volumeInfo"]["categories"] %>
                 <%= hidden_field_tag :"book[author]", author %>
                 <%= hidden_field_tag :"book[img_url]", book_image %>
+                <%= hidden_field_tag :"book[web_reader_link]", book["accessInfo"]["webReaderLink"] %>
                 <%= submit_tag :"Add to Reading List", class: "btn btn-primary m-3"%>
                 <p class = " btn btn-inactive m-3">Remove from Reading List</p>
               <% end %>
@@ -68,4 +72,6 @@
       </div>
     </div>
   <% end %>
+<% else %>
+  <img src= "https://i.imgur.com/mDC0Ta8.png" class="confused-paige">
 <% end %>

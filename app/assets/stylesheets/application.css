@@ -14,24 +14,25 @@
  *= require_self
  */
 
-.nav-item a{
-color: #53565A
- }
-
-.nav-item a:hover{
-    color: #ff6f61
-     }
-.search-form {
-    margin: 0 auto;
-    width: 300px;
-    position: relative;
- */
+html {
+    background-color: #88DBDF;  
 }
 
-
-html {
-    background-color: #88DBDF;
+nav a:hover {
+    border-bottom:1px solid;
+    color:#53565A;
+    padding-bottom:5px;
+}
+.nav-item a{
+    color: #53565A
+}
     
+.nav-item a:hover{
+    color: #ff6f61;
+}
+
+a, a:hover {
+    color: #009ca6;
 }
 
 body {
@@ -44,6 +45,14 @@ body {
     color: #53565A;
 }
 
+h1 {
+    font-size: 2.8em !important;
+}
+
+h2 {
+    font-size: 2em !important;
+}
+
 h5 {
 
     font-size: 24pt;
@@ -51,6 +60,10 @@ h5 {
 p{
     font-family: 'Roboto', sans-serif;
     font-size: 14pt;
+}
+
+.vertical-align {
+    padding: 80px 0;
 }
 
 .img_book_fit {
@@ -62,6 +75,7 @@ p{
 .small-caps { 
     font-variant: small-caps;
     font-size: 24px;
+    text-transform: lowercase;
 }
 
 .btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited, .btn-outline-success {
@@ -85,14 +99,80 @@ p{
     color: white;
 }
 
+.btn-burgundy, .btn-burgundy:hover {
+    background-color: #933e3a !important;
+    border-width: 0px;
+    border-style: none;
+    color: white;  
+}
+
+.btn-huge {
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+}
+
 .welcome {
     letter-spacing: 0.02em;
     border-width: 0px;
     border-style: none;
     color: #ff6f61;
-    font-family: 'Playfair Display', serif;
-    font-weight: 900;
+    font-family: 'Lobster';
     font-size: 56px;
 
+}
+
+.search-form {
+    margin: 0 auto;
+    width: 300px;
+    position: relative;
+}
+    
+.strapline {
+    color: #ff6f61;
+    font-size: 2.5em !important;
+    font-family: 'Lobster'
+}
+
+.book {
+    color: #009ca6 !important;
+    font-size: 2em !important;
+    font-family: 'Lobster';    
+}
+
+.book a, .book a:hover {
+    color: #009ca6 !important;
+}
+
+.confused-paige {
+    opacity: 0.3;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    padding: 3%;
+    width: 40%;
+  }
+
+.sad-paige {
+    opacity: 0.3;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 3%;
+    width: 40%;
+  }
+
+.signup {
+    padding-top: 2em;
+    padding-left: 2em;
+}
+
+.join-us {
+    font-size: 20px;
 }
 

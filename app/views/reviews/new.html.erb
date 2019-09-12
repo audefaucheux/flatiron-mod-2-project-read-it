@@ -1,4 +1,4 @@
-<h1 class="mt-3">Rate <%= @book.title %></h1>
+<h1 class="small-caps text-center mt-3">rate <%= link_to @book.title, @book %></h1>
 
 <br>
 <%= form_for(@review) do |f| %>

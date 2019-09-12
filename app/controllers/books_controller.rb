@@ -5,6 +5,7 @@ class BooksController < ApplicationController
 
     def index
         @books = Book.all
+        @search = ""
     end
 
     def show
@@ -36,10 +37,13 @@ class BooksController < ApplicationController
             published_date: params["book"]["published_date"],
             genre_id: genre.id,
             author_id: author.id,
-            img_url: params["book"]["img_url"]
+            img_url: params["book"]["img_url"],
+            web_reader_link: params["book"]["web_reader_link"]
         )
 
         @current_user.books << book
+
+        flash[:notices] = ["Book successfully added to your reading list"]
 
         @search = (params[:search]).delete('\\"')
         redirect_to "/search?q=#{@search}&commit=Search"
@@ -47,12 +51,14 @@ class BooksController < ApplicationController
 
     def remove_from_reading_list_via_api
         ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
+        flash[:notices] = ["Book successfully removed from your reading list"]
         @search = params[:search]
         redirect_to "/search?q=#{@search}&commit=Search"
     end
 
     def remove_from_reading_list
         ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
+        flash[:notices] = ["Book successfully removed from your reading list"]
         @search = params[:search]
         redirect_to "/reading_list"
     end
