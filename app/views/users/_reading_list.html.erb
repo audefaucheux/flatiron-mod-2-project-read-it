@@ -1,8 +1,9 @@
 <h1 class="text-center">My Reading List</h1>
 
+<br>
 <% if @current_user.books.count == 0 %>
     <p class="text-center">
-        <em>You have no books saved on your reading list yet. Why not find your next favourite read in the <%= link_to "Library?", books_path %> </em>
+        <em>You have no books saved on your reading list yet. Why not find your next favourite read in the <%= link_to "Library", books_path %>?</em>
     </p>
 <% else %>
     <% @current_user.books.each do |book| %>
@@ -26,6 +27,11 @@
                             <%= hidden_field_tag :search, @search %>
                             <%= hidden_field_tag :book_id, book.id %>
                             <%= hidden_field_tag :author_id, book.author.name %>
+                            <% if !book.web_reader_link.empty?%>
+                                <%= link_to "Read book", book.web_reader_link, target:"_blank", class:"btn btn-burgundy" %>
+                            <% else %>
+                                <p class = " btn btn-inactive m-3">Read book</p>
+                            <% end %>
                             <%= link_to "Add a review", new_review_path(book_id: book.id), class:"btn btn-primary" %>
                             <%= submit_tag :"Remove from Reading List", class: "btn btn-remove"%>
                         <%end%>
