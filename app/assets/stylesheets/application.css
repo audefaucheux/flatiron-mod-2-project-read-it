@@ -14,19 +14,6 @@
  *= require_self
  */
 
-.nav-item a{
-color: #53565A
- }
-
-.nav-item a:hover{
-    color: #ff6f61
-     }
-.search-form {
-    margin: 0 auto;
-    width: 300px;
-    position: relative;
- */
-}
 
 
 html {
@@ -90,9 +77,35 @@ p{
     border-width: 0px;
     border-style: none;
     color: #ff6f61;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Lobster';
     font-weight: 900;
-    font-size: 56px;
+    font-size: 48px;
 
 }
 
+nav a:hover {
+    border-bottom:1px solid;
+    color:#53565A;
+    padding-bottom:5px;
+}
+.nav-item a{
+    color: #53565A
+    
+     }
+    
+    .nav-item a:hover{
+        color: #ff6f61;
+        
+         }
+    .search-form {
+        margin: 0 auto;
+        width: 300px;
+        position: relative;
+     */
+    }
+    
+    .strapline {
+        color: #ff6f61;
+        font-size: 2.5em !important;
+        font-weight: 600;
+    }
