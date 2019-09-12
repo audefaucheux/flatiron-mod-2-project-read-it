@@ -8,14 +8,14 @@ class SessionsController < ApplicationController
 
         if @user == nil
             redirect_to login_path
-            flash[:errors] = ["No logged in!"]
+            flash[:errors] = ["User with this password not found"]
         else 
             if @user.authenticate(params[:password])
                 session[:user_id] = @user.id
-                flash[:notices] = ["Logged in!"]
+                # flash[:notices] = ["Logged in!"]
                 redirect_to root_path
             else 
-                flash[:errors] = ["Not logged in!"]
+                flash[:errors] = ["User with this password not found"]
                 redirect_to login_path
             end
         end

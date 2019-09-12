@@ -1,15 +1,14 @@
 <h1 class="welcome mt-3">Edit User</h1>
-<p class="text">Please enter your new settings below:</h3>
-
+<p class="small-caps">please enter your new settings below:</p>
     <%= form_for @user, html: {:class =>"form-group"} do |f| %>
-        <div class="row">
+        <div class="row mt-4">
             <div class="form-group col-6">
                 <%= f.label :email_address %>
-                <%= f.text_field :email_address, :class =>"form-control" %>
+                <%= f.text_field :email_address, :class =>"form-control mb-2" %>
                 <%= f.label :password %>
-                <%= f.password_field :password, :class =>"form-control" %>
+                <%= f.password_field :password, :class =>"form-control mb-2" %>
                 <%= f.label :password_confirmation %>
-                <%= f.password_field :password_confirmation, :class =>"form-control" %>
+                <%= f.password_field :password_confirmation, :class =>"form-control mb-2" %>
                 <%= f.submit :"Update password", :class => "btn btn-primary mt-3" %>
             </div>
         </div>

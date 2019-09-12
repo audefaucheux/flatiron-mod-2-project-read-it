@@ -42,18 +42,22 @@ class BooksController < ApplicationController
 
         @current_user.books << book
 
+        flash[:notices] = ["Book successfully added to your reading list"]
+
         @search = (params[:search]).delete('\\"')
         redirect_to "/search?q=#{@search}&commit=Search"
     end
 
     def remove_from_reading_list_via_api
         ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
+        flash[:notices] = ["Book successfully removed from your reading list"]
         @search = params[:search]
         redirect_to "/search?q=#{@search}&commit=Search"
     end
 
     def remove_from_reading_list
         ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
+        flash[:notices] = ["Book successfully removed from your reading list"]
         @search = params[:search]
         redirect_to "/reading_list"
     end

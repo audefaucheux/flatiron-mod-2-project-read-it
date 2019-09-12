@@ -1,9 +1,10 @@
-<h1 class="text-center">My Reading List</h1>
+<h1 class="small-caps text-center">my reading list</h1>
 
 <br>
 <% if @current_user.books.count == 0 %>
     <p class="text-center">
         <em>You have no books saved on your reading list yet. Why not find your next favourite read in the <%= link_to "Library", books_path %>?</em>
+        <img src="https://i.imgur.com/d1CWqTL.png" alt="crying_paige" class="sad-paige">
     </p>
 <% else %>
     <% @current_user.books.each do |book| %>
