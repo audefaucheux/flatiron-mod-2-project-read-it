@@ -21,6 +21,10 @@ html {
     
 }
 
+a {
+    color: #009ca6
+}
+
 body {
     margin: 2% 15% ;
     padding: 2%;
@@ -85,8 +89,7 @@ p{
     border-style: none;
     color: #ff6f61;
     font-family: 'Lobster';
-    font-weight: 900;
-    font-size: 48px;
+    font-size: 56px;
 
 }
 
@@ -114,5 +117,25 @@ nav a:hover {
     .strapline {
         color: #ff6f61;
         font-size: 2.5em !important;
-        font-weight: 600;
+        font-family: 'Lobster'
     }
+
+.book {
+    color: #009ca6 !important;
+    font-size: 2em !important;
+    font-family: 'Lobster';    
+}
+.book a, .book a:hover {
+    color: #009ca6 !important;
+}
+
+.confused-paige {
+    opacity: 0.3;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 30px;
+    margin-bottom: 80px;
+    padding: 3%;
+    width: 40%;
+  }
