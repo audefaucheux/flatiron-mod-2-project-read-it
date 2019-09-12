@@ -1,16 +1,25 @@
-<h1 class="m-3 small-caps">Login</h1>
+<h1 class="m-3 small-caps">Hi!</h1>
 
-<div class="container mt-3 ml-0">
-    <%= form_tag(sessions_path, html: {class:"form-group"}) do %>
-        <div class="row">
-            <div class="form-group col-4">
-                <%= label_tag :email_address %>
-                <%= text_field_tag :email_address, '', class:"form-control" %><br>
-                <%= label_tag :password %>
-                <%= password_field_tag :password, '', class:"form-control" %><br>
-                <%= submit_tag :"Login", class:"btn btn-primary" %>
-            </div>
-        </div>
-    <% end %>
+<p class="m-3">Hi! I'm Paige Turner. Welcome to Read.it. We're a virtual bookshelf designed to store your favourite books. You can search for titles, add them to your reading list, add ratings and reviews, and even read them in your browser.</p>
+
+<br>
+<div class="container">
+  <div class="row justify-content-around">
+    <div class="col-5 pt-3 pb-3">
+        <h2 class="small-caps">Login</h2>
+        <%= form_tag(sessions_path, html: {class:"form-group"}) do %>
+            <%= label_tag :email_address %>
+            <%= text_field_tag :email_address, '', class:"form-control" %><br>
+            <%= label_tag :password %>
+            <%= password_field_tag :password, '', class:"form-control" %><br>
+            <%= submit_tag :"Login", class:"btn btn-primary" %>
+        <% end %>
+    </div>
+    <div class="col-1">
+        <h2 class="text-center vertical-align mt-5 small-caps">or</h2>
+    </div>
+    <div class="animated shake col-5 signup">
+        <p class="vertical-align"><%= link_to "Join us", new_user_path, class:"btn btn-lg btn-huge btn-primary join-us" %></p>
+    </div>
+  </div>
 </div>
-<p class="m-3">Don't have an account yet? <%= link_to "Sign up", new_user_path %></p>

@@ -14,8 +14,6 @@
  *= require_self
  */
 
-
-
 html {
     background-color: #88DBDF;  
 }
@@ -51,6 +49,10 @@ h1 {
     font-size: 2.8em !important;
 }
 
+h2 {
+    font-size: 2em !important;
+}
+
 h5 {
 
     font-size: 24pt;
@@ -58,6 +60,10 @@ h5 {
 p{
     font-family: 'Roboto', sans-serif;
     font-size: 14pt;
+}
+
+.vertical-align {
+    padding: 80px 0;
 }
 
 .img_book_fit {
@@ -98,6 +104,13 @@ p{
     border-width: 0px;
     border-style: none;
     color: white;  
+}
+
+.btn-huge {
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-bottom: 20px;
+    padding-left: 30px;
 }
 
 .welcome {
@@ -153,3 +166,13 @@ p{
     padding: 3%;
     width: 40%;
   }
+
+.signup {
+    padding-top: 2em;
+    padding-left: 2em;
+}
+
+.join-us {
+    font-size: 20px;
+}
+

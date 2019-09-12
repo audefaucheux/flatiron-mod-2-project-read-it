@@ -7,18 +7,18 @@
   <% end %>
 </div>
 
-<% if @request.nil? || @search %> 
+<% if @request.nil? && !@search.empty? %>
     <p class="text-center mt-3">
         <em>Hmmm... I can't seem to find "<%= @search %>".</em>
     </p>
     <img src= "https://i.imgur.com/mDC0Ta8.png" class="confused-paige">
-<%else%>
+<%elsif !@request.nil?%>
   <% @request.each do |book| %>
     <div class="card mt-4" style="max-width: 100%; max-height: 10%;">
       <div class="row no-gutters">
         <div class="col-md-3">
           <% if !book["volumeInfo"]["imageLinks"].present?%>
-            <% book_image = "https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png" %>
+            <% book_image = "https://i.imgur.com/mDC0Ta8.png" %>
           <% else %>
             <% book_image = book["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
           <% end %>
@@ -72,4 +72,6 @@
       </div>
     </div>
   <% end %>
+<% else %>
+  <img src= "https://i.imgur.com/mDC0Ta8.png" class="confused-paige">
 <% end %>
