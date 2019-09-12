@@ -51,6 +51,12 @@ class BooksController < ApplicationController
         redirect_to "/search?q=#{@search}&commit=Search"
     end
 
+    def remove_from_reading_list
+        ReadingList.find_by(user_id: @current_user.id, book_id: params[:book_id]).destroy
+        @search = params[:search]
+        redirect_to "/reading_list"
+    end
+
     private
 
     def find_book

@@ -14,13 +14,24 @@
  *= require_self
  */
 
-nav a{
-padding-left: 1%
-
+.nav-item a{
+color: #53565A
  }
 
+.nav-item a:hover{
+    color: #ff6f61
+     }
+.search-form {
+    margin: 0 auto;
+    width: 300px;
+    position: relative;
+ */
+}
+
+
 html {
-    background-color: #88DBDF
+    background-color: #88DBDF;
+    
 }
 
 body {
@@ -30,6 +41,7 @@ body {
     border-width: 30px;
     border-style: solid;
     background-color: white;
+    color: #53565A;
 }
 
 h5 {
@@ -74,11 +86,13 @@ p{
 }
 
 .welcome {
+    letter-spacing: 0.02em;
     border-width: 0px;
     border-style: none;
     color: #ff6f61;
     font-family: 'Playfair Display', serif;
     font-weight: 900;
     font-size: 56px;
-    font-style: italic;
+
 }
+
