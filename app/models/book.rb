@@ -12,8 +12,13 @@ class Book < ApplicationRecord
   end
 
   def average_rating
-    total_rating = self.reviews.map{|review| review.rating}
-    total_rating.inject{|sum, el| sum + el}.to_f/total_rating.size
+    if self.reviews.size == 0
+      "No ratings yet"
+    else
+      total_rating = self.reviews.map{|review| review.rating}
+      average = total_rating.inject{|sum, el| sum + el}.to_f/total_rating.size
+      "User rating: #{average.to_i}/5"
+    end
   end
 
   def star_rating

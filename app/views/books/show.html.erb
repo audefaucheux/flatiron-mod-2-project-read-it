@@ -1,6 +1,6 @@
 <h1 class="mt-3"><%= @book.title %></h1>
 <p>
-    <em>by <%= @book.author_name %></em> | User Rating: <%= @book.average_rating.to_i %>/5 | Genre: <%= @book.genre_name %>
+    <em>by <%= @book.author_name %></em> | <%= @book.average_rating %> | Genre: <%= @book.genre_name %>
 </p>
 
 <h3 class="mt-4">Synopsis: </h3>
