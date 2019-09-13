@@ -14,7 +14,7 @@ Author.destroy_all
 Genre.destroy_all
 
 # #USERS
-# aude = User.create(email_address: "aude53@gmail.com", password: "aude")
+aude = User.create(username: "Aude", email_address: "aude53@gmail.com", password: "aude")
 
 # #AUTHORS
 # jane = Author.create(name: "Jane Austen")
