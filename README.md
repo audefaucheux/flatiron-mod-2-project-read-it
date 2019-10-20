@@ -4,12 +4,11 @@ Read.it is an application where you can rate books and save them in your reading
 
 ## Getting Started
 
-Read.it runs on Ruby 2.6.1. on a Postgres database.
+Read.it runs on Ruby 2.6.1. and Postgres database.
 
-### Installing
+### Installing locally
 
-Fork and clone this repository and open it in your code editor
-To get the repository up and running, run the below commands:
+To get it up and running locally run the following commands in the root directory:
 
 Run bundle install
 
@@ -51,12 +50,10 @@ rails s
 - Polly Reynolds
 - Aude Faucheux
 
-This project was built in pair programming on week 6 of the coding bootcamp Flatiron School
-
 # App Overview
 
-This app has been deployed on Heroku - https://read--it.herokuapp.com/login
+Try it out on on Heroku - https://read--it.herokuapp.com/login
 
-Please find below an overview on how can this app be used.
+An overview on how can this app be used:
 
 # ![](read-it-overview.gif)
