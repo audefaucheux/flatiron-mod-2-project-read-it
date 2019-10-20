@@ -1,11 +1,6 @@
 # READ.IT
 
-<<<<<<< HEAD
 Read.it is an application where you can rate books and save them in your reading list.
-=======
-Read.it is an application where you can rate books and save them in your reading list.
-
-> > > > > > > 22d6e2f992402488ce4f399b7ed925e7d32baad9
 
 ## Getting Started
 
@@ -17,7 +12,6 @@ Fork and clone this repository and open it in your code editor
 To get the repository up and running, run the below commands:
 
 Run bundle install
-<<<<<<< HEAD
 
 ```
 bundle install
