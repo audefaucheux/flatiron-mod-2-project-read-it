@@ -31,7 +31,7 @@ Run the seed data
 rails db:seed
 ```
 
-Open the app on the local host
+Run the app on the local host
 ```
 rails s
 ```
